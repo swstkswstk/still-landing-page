@@ -1,0 +1,182 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --left-bg-color: rgba(72, 70, 198, 0.7);
+  --right-bg-color: rgba(43, 43, 43, 0.7);
+  --left-btn-hover-color: rgba(87, 84, 236, 1);
+  --right-btn-hover-color: rgba(28, 122, 28, 1);
+  --hover-width: 75%;
+  --other-width: 25%;
+  --speed: 1000ms;
+}
+
+.bg {
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  /* black background */
+  opacity: 1;
+  /* Start fully opaque */
+  transition: opacity 1s ease;
+  /* Smooth fade-out */
+  z-index: 10;
+  /* Higher than other elements */
+
+
+}
+
+.text-loading {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  font-weight: bold;
+  font-size: clamp(2rem, 8vw, 6rem);
+  z-index: 100;
+  color: #fff;
+  opacity: 1;
+  /* Start fully visible */
+  transition: opacity 1s ease-out;
+  /* Smooth fade-out */
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  overflow: hidden;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.btn {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(-50%);
+  color: #fff;
+  border: #fff solid 0.2rem;
+  text-decoration: none;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  width: min(15rem, 80%);
+  padding: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  z-index: 2;
+  transition: background-color 0.3s ease;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: #333;
+  z-index: 2;
+}
+
+.split {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: width var(--speed) ease-in-out;
+}
+
+.split.left {
+  left: 0;
+  background: url('https://blog.playstation.com/tachyon/2023/10/cd56722db7b991b3d7a33f1bafd55f80d0ac553d.png');
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.split.left::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--left-bg-color);
+}
+
+.split.left .btn:hover {
+  background-color: var(--left-btn-hover-color);
+  border-color: var(--left-btn-hover-color);
+}
+
+.split.right {
+  right: 0;
+  background: url('https://sm.ign.com/ign_in/news/x/xbox-serie/xbox-series-x-all-digital-edition-officially-announced-xbox_at4z.jpg');
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.split.right::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--right-bg-color);
+}
+
+.split.right .btn:hover {
+  background-color: var(--right-btn-hover-color);
+  border-color: var(--right-btn-hover-color);
+}
+
+.hover-left .left {
+  width: var(--hover-width);
+}
+
+.hover-left .right {
+  width: var(--other-width);
+}
+
+.hover-right .right {
+  width: var(--hover-width);
+}
+
+.hover-right .left {
+  width: var(--other-width);
+}
+
+@media (max-width: 1200px) {
+  :root {
+    --hover-width: 65%;
+    --other-width: 35%;
+  }
+}
+
+@media (max-width: 800px) {
+  :root {
+    --hover-width: 55%;
+    --other-width: 45%;
+  }
+}
+
+@media (max-width: 500px) {
+  .btn {
+    padding: 1rem;
+  }
+}
